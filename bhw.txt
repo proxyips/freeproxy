@@ -33,6 +33,17 @@ chmod +x freeproxy.sh
 ./freeproxy.sh
 [/code]
 
+Step 5 
+Using the proxy.  Now that you have a nice new and shiny dual proxy server.  One port connects you to the tor netwok and the other port connects you to public proxies.  I will update the list often and place them in this thread. Remember to change 1.1.1.1 to the address you get in Step 2.
+Tor connection
+[code]
+curl -x 1.1.1.1:8090 https://ifconfig.me
+[/code]
+Public proxies
+[code]
+curl -x 1.1.1.1:8091 https://ifconfig.me
+[/code]
+
 Any question post them.  I will reply and help with any questions related to this script.
 
 The script has been posted on github:

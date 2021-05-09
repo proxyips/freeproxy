@@ -1,0 +1,53 @@
+{
+            "max_connections": 150,
+            "client_idle_timeout": "130s",
+            "backend_idle_timeout": "0",
+            "backend_connection_timeout": "0",
+            "bind": "1.1.1.1:8091",
+            "protocol": "tcp",
+            "balance": "iphash1",
+            "sni": null,
+            "tls": null,
+            "backends_tls": null,
+            "udp": null,
+            "access": {
+                "default": "deny",
+                "rules": [
+                    "allow 2.2.2.2"
+                ]
+            },
+            "proxy_protocol": null,
+            "discovery": {
+                "kind": "static",
+                "failpolicy": "keeplast",
+                "interval": "0",
+                "timeout": "0",
+                "static_list": [
+                    "157.230.103.189:41362",
+                    "157.230.103.189:40557",
+                    "157.230.103.189:46581",
+                    "104.129.192.155:10605",
+                    "157.230.103.189:44705",
+                    "157.230.103.189:43395",
+                    "70.44.24.245:8888",
+                    "72.196.184.54:3128",
+                    "157.230.103.189:43794",
+                    "157.230.103.189:33123",
+                    "157.230.103.189:36099",
+                    "157.230.103.189:41524",
+                    "157.230.103.189:44694",
+                    "157.230.103.189:40710",
+                    "157.230.103.189:33549",
+                    "157.230.103.189:39394",
+                    "157.230.103.189:34304"
+                ]
+            },
+            "healthcheck": {
+                "kind": "ping",
+                "interval": "5m",
+                "passes": 2,
+                "fails": 1,
+                "timeout": "1s",
+                "initial_status": "healthy"
+            }
+        }
