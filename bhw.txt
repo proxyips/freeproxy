@@ -33,7 +33,7 @@ chmod +x freeproxy.sh
 ./freeproxy.sh
 [/code]
 
-
+Any question post them.  I will reply and help with any questions related to this script.
 
 The script has been posted on github:
 [code]
