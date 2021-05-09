@@ -1,0 +1,42 @@
+For the people who want to control their own proxy this thread is for you.
+
+TLDR; You will need a Debian 9 clean install from any cloud provider also must run as root user:
+Step 1
+[code]
+wget https://raw.githubusercontent.com/proxyips/freeproxy/main/freeproxy.sh 
+[/code]
+
+Step 2
+Get your the public ip address from your server
+[code]
+curl https://ifconfig.me
+[/code]
+
+Or
+Select your public IP address
+[code]
+ip a
+[/code]
+
+Step 3
+Get the public ip address from the device. You are going to use to connect to your proxy.
+If your using your computer or a device on your home/office network. Just open up a browser and go to.
+[code]
+https://ifconfig.me
+[/code]
+
+Step 4
+You must now edit freeproxy.sh file. Change the 1.1.1.1 with the ip address from Step 2.  Then change 2.2.2.2 with the ip address you got from Step 3. Also you need replace change_user with your username and change change_password with your password. Then save the changes.
+[code]
+nano freeproxy.sh
+chmod +x freeproxy.sh
+./freeproxy.sh
+[/code]
+
+
+
+The script has been posted on github:
+[code]
+https://github.com/proxyips/freeproxy.git
+[/code]
+pull requests welcome

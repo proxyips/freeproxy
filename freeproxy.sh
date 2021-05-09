@@ -1,18 +1,19 @@
 #!/bin/bash
-
-GO_VERSION=1.16.3
 #The Server Pubilc IP Address  !!! MUST CHANGE !!! 
-SERVER_IP=$1
+SERVER_IP=1.1.1.1
 #The public IP that you want to access your proxy !!! MUST CHANGE !!!
-ACCESS_IP=$2
+ACCESS_IP=2.2.2.2
 
 # API Access to Proxy Settings !!! MUST CHANGE !!!
-API_USER=7fapcev9otbnyjmd3Akxwqghiu4rs
-API_PASSWORD=q0y7CLj0jAHarG5zHZgu
+API_USER=change_user
+API_PASSWORD=change_password
 
+
+# Installing all the needed tools and tor
+GO_VERSION=1.16.3
 apt update && apt upgrade -y
 apt install -y apt-transport-https
-# Installing all the needed tools and tor
+
 rm /etc/apt/sources.list.d/tor.list
 echo deb https://deb.torproject.org/torproject.org stretch main >> /etc/apt/sources.list.d/tor.list
 curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --import
