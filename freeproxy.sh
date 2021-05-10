@@ -8,6 +8,8 @@ ACCESS_IP=2.2.2.2
 API_USER=change_user
 API_PASSWORD=change_password
 
+# Public proxy country
+COUNTRY=""
 
 # Installing all the needed tools and tor
 GO_VERSION=1.16.3
@@ -64,6 +66,12 @@ gobetween --version
 git clone https://github.com/nadoo/glider.git
 cd glider && go build -v -ldflags "-s -w" && cp glider /opt/bin/
 chmod +x /opt/bin/glider && ln -s /opt/bin/glider /bin/glider
+
+git clone https://github.com/proxyips/proxyupdater.git
+cd proxyupdater && go build -o /opt/bin/proxyupdater proxyupdater/main.go 
+chmod +x /opt/bin/proxyupdater && ln -s /opt/bin/proxyupdater /bin/proxyupdater
+
+echo "*/15 * * * * /opt/bin/proxyupdater publicproxy -f /opt/gobetween/gobetween.json -c ${COUNTRY}" >> /etc/crontab
 
 mkdir -p /opt/glider
 rm /opt/glider/glider.conf
@@ -145,7 +153,6 @@ cat << EOF >> /opt/gobetween/gobetween.json
             "login": "${API_USER}",
             "password": "${API_PASSWORD}"
         },
-        "tls": null,
         "cors": false
     },
     "metrics": {
@@ -186,6 +193,7 @@ cat << EOF >> /opt/gobetween/gobetween.json
                 "interval": "0",
                 "timeout": "0",
                 "static_list": [
+                "127.0.0.1:9051",
                 "127.0.0.1:9051"
                 ]
             },
@@ -198,14 +206,14 @@ cat << EOF >> /opt/gobetween/gobetween.json
                 "initial_status": "healthy"
             }
         },
-        "public_proxies":{
+        "public_proxies": {
             "max_connections": 150,
             "client_idle_timeout": "130s",
             "backend_idle_timeout": "0",
             "backend_connection_timeout": "0",
             "bind": "${SERVER_IP}:8091",
             "protocol": "tcp",
-            "balance": "iphash1",
+            "balance": "roundrobin",
             "sni": null,
             "tls": null,
             "backends_tls": null,
@@ -219,38 +227,20 @@ cat << EOF >> /opt/gobetween/gobetween.json
             "proxy_protocol": null,
             "discovery": {
                 "kind": "static",
-                "failpolicy": "keeplast",
-                "interval": "0",
-                "timeout": "0",
-                "static_list": [
-                    "157.230.103.189:41362",
-                    "157.230.103.189:40557",
-                    "157.230.103.189:46581",
-                    "104.129.192.155:10605",
-                    "157.230.103.189:44705",
-                    "157.230.103.189:43395",
-                    "70.44.24.245:8888",
-                    "72.196.184.54:3128",
-                    "157.230.103.189:43794",
-                    "157.230.103.189:33123",
-                    "157.230.103.189:36099",
-                    "157.230.103.189:41524",
-                    "157.230.103.189:44694",
-                    "157.230.103.189:40710",
-                    "157.230.103.189:33549",
-                    "157.230.103.189:39394",
-                    "157.230.103.189:34304"
-                ]
+                "failpolicy": "setempty",
+                "interval": "5s",
+                "timeout": "2s",
+                "static_list": null
             },
             "healthcheck": {
                 "kind": "ping",
-                "interval": "30m",
+                "interval": "3s",
                 "passes": 2,
                 "fails": 1,
                 "timeout": "1s",
                 "initial_status": "healthy"
             }
-        }
+        },
     }
 }
 EOF
