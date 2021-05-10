@@ -240,7 +240,7 @@ cat << EOF >> /opt/gobetween/gobetween.json
                 "timeout": "1s",
                 "initial_status": "healthy"
             }
-        },
+        }
     }
 }
 EOF
