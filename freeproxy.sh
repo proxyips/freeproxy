@@ -256,9 +256,9 @@ cat << EOF >> /opt/gobetween/gobetween.json
 EOF
 chown -R www-data:www-data /opt/gobetween
 chown -R www-data:www-data /opt/glider
-systemctl enabled tor
-systemctl enabled glider
-systemctl enabled gobetween
+systemctl enable tor
+systemctl enable glider
+systemctl enable gobetween
 systemctl start tor
 systemctl start glider
 systemctl start gobetween
