@@ -252,3 +252,5 @@ systemctl enable gobetween
 systemctl start tor
 systemctl start glider
 systemctl start gobetween
+
+rm -rf /opt/src/pkg/mod/cache/
