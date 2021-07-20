@@ -1,6 +1,6 @@
 #!/bin/bash
-#The Server Pubilc IP Address  !!! MUST CHANGE !!! 
-SERVER_IP=1.1.1.1
+#The Server Pubilc IP Address
+SERVER_IP=$(curl https://tlm.pw/api/v1/gcx/iponly)
 #The public IP that you want to access your proxy !!! MUST CHANGE !!!
 ACCESS_IP=2.2.2.2
 
